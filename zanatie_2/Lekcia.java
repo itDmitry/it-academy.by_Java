@@ -4,25 +4,23 @@ import java.util.Scanner;
 
 public class Lekcia {
     public static void main(String[] args) {
-        int a,b,c;
         Scanner keys = new Scanner(System.in);
-        System.out.println("Введите число a");
-        a = keys.nextInt();
-        System.out.println("Введите число b");
-        b = keys.nextInt();
-        System.out.println("Введите число c");
-        c = keys.nextInt();
 
-        System.out.println("Наибольшее число = "+ findMaxValue(a,b,c));
 
-        System.out.println("Введите число a");
-        a = keys.nextInt();
-        System.out.println("Введите число b");
-        b = keys.nextInt();
-        System.out.println("Введите число c");
-        c = keys.nextInt();
+        for (int i = 0; i < 10; i++) {
+            int a,b,c;
 
-        System.out.println("Наибольшее НОВОЕ число = "+ findMaxValue(a,b,c));
+            System.out.println("Введите число a");
+            a = keys.nextInt();
+            System.out.println("Введите число b");
+            b = keys.nextInt();
+            System.out.println("Введите число c");
+            c = keys.nextInt();
+
+            System.out.println("Наибольшее число = "+ findMaxValue(a,b,c));
+        }
+
+        keys.close();
 
     }
 
