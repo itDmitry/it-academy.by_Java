@@ -6,25 +6,71 @@ public class Lekcia {
     public static void main(String[] args) {
         Scanner keys = new Scanner(System.in);
 
+        int a;
+        boolean b;
+        double d;
 
-        for (int i = 0; i < 10; i++) {
-            int a,b,c;
+        System.out.println("Введи число!");
+        a = keys.nextInt();
 
-            System.out.println("Введите число a");
-            a = keys.nextInt();
-            System.out.println("Введите число b");
-            b = keys.nextInt();
-            System.out.println("Введите число c");
-            c = keys.nextInt();
+        System.out.println("Введи \"true\" для перевода в байты или \"false\" для перевода в килобайты");
+        b = keys.nextBoolean();
 
-            System.out.println("Наибольшее число = "+ findMaxValue(a,b,c));
+        if (b){
+            d = a*1024;
+        } else {
+            d = a/1024;
         }
 
-        keys.close();
+        System.out.println(d);
 
     }
 
+
+        /*
+
+        Поиск нечетного числа
+        Scanner keys = new Scanner(System.in);
+
+        int a, b;
+        System.out.println("Введите число a");
+        a = keys.nextInt();
+        System.out.println("Введите число b");
+        b = keys.nextInt();
+
+        if (a%2 == 0 && b%2 ==0){
+            a = a+1;
+            System.out.println(a);
+        } else if (a%2 == 1 && b%2 ==1){
+                a = a+1;
+                System.out.println(b);
+        } else if (a%2 == 1){
+            System.out.println(a);
+        } else {
+            System.out.println(b);
+        }
+
+ */
+
+
+
     public static int findMaxValue (int a, int b, int c){
+        int max;
+
+        if(a > b){
+            max = a;
+        } else {
+            max = b;
+        }
+
+        if(max < c){
+            max = c;
+        }
+
+        return max;
+    }
+
+    public static int findNechetValue (int a, int b, int c){
         int max;
 
         if(a > b){
