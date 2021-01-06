@@ -12,14 +12,32 @@ public class DZ1_7 {
      */
     public static void toBinaryString(byte number){
         if (number >= 0){
-            Integer.toBinaryString(number);
+            System.out.println(Integer.toBinaryString(number));
         }
         else {
-
+            System.out.println("0");
         }
     }
 
+        public static void binar(int a){
+            int b;
+            String temp = "";
+            while(a !=0){
+                b = a%2;
+                temp = b + temp;
+                a = a/2;
+            } System.out.print(temp);
+        }
+
     public static void main(String[] args) {
+
+                    binar(5);
+
+
+/*        toBinaryString((byte)42);
+        toBinaryString((byte)15);
+        toBinaryString((byte)-42);
+        toBinaryString((byte)-15); */
 
     }
 }
