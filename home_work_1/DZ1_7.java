@@ -12,42 +12,33 @@ public class DZ1_7 {
 	7.3 Вводим: -42. Возвращает: 11010110
 	7.4 Вводим: -15. Возвращает: 11110001
      */
+
     public static String toBinaryString(byte number){
-        //Если число положительное, то работаем так
-        if (number >= 0){
-            int [] binaryArray = new int[] {0, 0, 0, 0, 0, 0, 0, 0};
-            byte temp;
+        int [] binaryArray = new int[] {0, 0, 0, 0, 0, 0, 0, 0};
+
+        if (number == 0){
+            //Здесь вычисления не нужны, т.к. массив уже нулевой.
+        }
+
+        if (number > 0){
             for (int i = (binaryArray.length - 1); i > 0 ; i--) {
                 binaryArray[i] = number % 2;
-                temp = (byte) (number / 2);
-                number = temp;
+                number = (byte) (number / 2);
             }
-            //Выводим что получилось в двоичном представлении
-            String S = String.format("%d%d%d%d%d%d%d%d", binaryArray[0], binaryArray[1], binaryArray[2],
-                    binaryArray[3], binaryArray[4], binaryArray[5], binaryArray[6], binaryArray[7]);
-            return S;
         }
-        //Сначала делаем его по модулю и берем обычное представление
-        else {
-            int[] binaryArray = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
-            byte temp;
+
+        if(number < 0){
             number = (byte) Math.abs(number);
             for (int i = (binaryArray.length - 1); i > 0; i--) {
-                binaryArray[i] = number % 2;
-                temp = (byte) (number / 2);
-                number = temp;
-            }
-            //Потом его инвертируем (обратный код)
-            for (int i = 0; i < binaryArray.length; i++) {
-                if (binaryArray[i] == 0) {
+                if (number % 2 == 0) {
                     binaryArray[i] = 1;
                 } else {
                     binaryArray[i] = 0;
                 }
+                number = (byte) (number / 2);
             }
-//Добавляем 1 для дополнительного кода.
+//Добавляем 1 бит для дополнительного кода.
             for (int i = (binaryArray.length - 1); i > 0; i--) {
-
                 if (binaryArray[i] == 1){
                     binaryArray[i] = 0;
                     continue;
@@ -58,18 +49,18 @@ public class DZ1_7 {
                     break;
                 }
             }
-//Выводим что получилось в двоичном представлении
-                String S = String.format("%d%d%d%d%d%d%d%d", binaryArray[0], binaryArray[1], binaryArray[2],
-                        binaryArray[3], binaryArray[4], binaryArray[5], binaryArray[6], binaryArray[7]);
-                return S;
-            }
+        }
+        //Выводим что получилось в двоичном представлении
+        return String.format("%d%d%d%d%d%d%d%d", binaryArray[0], binaryArray[1], binaryArray[2],
+                binaryArray[3], binaryArray[4], binaryArray[5], binaryArray[6], binaryArray[7]);
         }
 
     public static void main(String[] args) {
-//Проверяем себя
+
+        System.out.println("Ввели = 0, вывели " + toBinaryString((byte)0) + ", а должны были 00000000");
         System.out.println("Ввели = 42, вывели " + toBinaryString((byte)42) + ", а должны были 00101010");
-        System.out.println("Ввели = 15, вывели " + toBinaryString((byte)42) + ", а должны были 00001111");
-        System.out.println("Ввели = -42, вывели " + toBinaryString((byte)42) + ", а должны были 11010110");
+        System.out.println("Ввели = 15, вывели " + toBinaryString((byte)15) + ", а должны были 00001111");
+        System.out.println("Ввели = -42, вывели " + toBinaryString((byte)-42) + ", а должны были 11010110");
         System.out.println("Ввели = -15, вывели " + toBinaryString((byte)-15) + ", а должны были 11110001");
 
     }
