@@ -27,7 +27,6 @@ public class DZ1_7 {
                     binaryArray[3], binaryArray[4], binaryArray[5], binaryArray[6], binaryArray[7]);
             return S;
         }
-        //Если число отрицательное, то работаем так
         //Сначала делаем его по модулю и берем обычное представление
         else {
             int[] binaryArray = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
