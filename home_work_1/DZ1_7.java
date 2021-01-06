@@ -13,11 +13,21 @@ public class DZ1_7 {
 	7.4 Вводим: -15. Возвращает: 11110001
      */
 
+    public static void main(String[] args) {
+
+        System.out.println("Ввели = 0, вывели " + toBinaryString((byte)0) + ", а должны были 00000000");
+        System.out.println("Ввели = 42, вывели " + toBinaryString((byte)42) + ", а должны были 00101010");
+        System.out.println("Ввели = 15, вывели " + toBinaryString((byte)15) + ", а должны были 00001111");
+        System.out.println("Ввели = -42, вывели " + toBinaryString((byte)-42) + ", а должны были 11010110");
+        System.out.println("Ввели = -15, вывели " + toBinaryString((byte)-15) + ", а должны были 11110001");
+
+    }
+
     public static String toBinaryString(byte number){
         int [] binaryArray = new int[] {0, 0, 0, 0, 0, 0, 0, 0};
 
         if (number == 0){
-            //Здесь вычисления не нужны, т.к. массив уже нулевой.
+            //Здесь вычислений не нужны, т.к. массив уже нулевой.
         }
 
         if (number > 0){
@@ -55,13 +65,4 @@ public class DZ1_7 {
                 binaryArray[3], binaryArray[4], binaryArray[5], binaryArray[6], binaryArray[7]);
         }
 
-    public static void main(String[] args) {
-
-        System.out.println("Ввели = 0, вывели " + toBinaryString((byte)0) + ", а должны были 00000000");
-        System.out.println("Ввели = 42, вывели " + toBinaryString((byte)42) + ", а должны были 00101010");
-        System.out.println("Ввели = 15, вывели " + toBinaryString((byte)15) + ", а должны были 00001111");
-        System.out.println("Ввели = -42, вывели " + toBinaryString((byte)-42) + ", а должны были 11010110");
-        System.out.println("Ввели = -15, вывели " + toBinaryString((byte)-15) + ", а должны были 11110001");
-
-    }
 }
