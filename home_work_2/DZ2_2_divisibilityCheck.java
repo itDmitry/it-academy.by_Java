@@ -10,38 +10,34 @@ package home_work_2;
 
 import java.util.Scanner;
 
-public class DZ2_2_divisibility_check {
+public class DZ2_2_divisibilityCheck {
     public static void main(String[] args) {
         int a,b;
         Scanner keys = new Scanner(System.in);
-        System.out.println("Введи последовательно 2 разных ЦЕЛЫХ числа, которые будут проверяться на делимость");
+        System.out.println("Введи 2 разных ЦЕЛЫХ числа, которые будут проверяться на делимость первого на второе.");
         a = keys.nextInt();
         System.out.println("Вы ввели число " + a + ", введите еще 1 число");
         b = keys.nextInt();
         System.out.println("Вы ввели число " + b + ", больше ввод не требуется");
 
-        System.out.println("Думаем и считаем, не то что тупаки из омона...");
+        keys.close();
 
+        System.out.println("Думаем и считаем, не то что тупаки из омона...");
         System.out.println(divisibilityCheck(a,b));
+        if (b != 0){
+            System.out.println("Частное от деления = " + a / b);
+        }
     }
 
     public static String divisibilityCheck (int a, int b){
-        int check = 0;
         String S;
-        if (a == b){
-            S = "Ты ввел 2 одинаковых числа, перезапусти программу и не пытайся обмануть как пересидент!";
-        } else if (b == 0) {
-            S = "Красаучыг, второе число не может быть 0, очевидно же.";
+
+        if (b == 0) {
+            S = "Красаучыг, второе число не может быть 0, очевидно же. Перевыборы!.. Т.е. перезапуск делай...";
         } else if(a % b == 0) {
-            check = (int)(a / b);
-            S = "Первое число делится без остатка на второе. Результат = " + check;
-        } /* else if(b % a == 0) {
-            check = (int)(b / a);
-            S = "Второе число делится без остатка на первое. Результат = " + check;
-        } */ else {
-            check = (int)(a / b);
-            S = "Первое число не делятся без остатка на второе. Результат деления = " + check +
-            " Остаток от деления = " + a % b;
+            S = "Первое число делится без остатка на второе.";
+        } else {
+            S = "Первое число не делятся без остатка на второе. Остаток от деления = " + a % b;
         }
 
         return S;
