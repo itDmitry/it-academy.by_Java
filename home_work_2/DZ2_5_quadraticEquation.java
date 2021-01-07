@@ -33,6 +33,27 @@ public class DZ2_5_quadraticEquation {
 
         d = b*2 - 4*a*c;
 
-//        quadraticEquation(double a, double b, double c);
+        System.out.println(quadraticEquation(a,b,c,d));
+    }
+
+    public static String quadraticEquation(double a, double b, double c, double d){
+
+        double x1, x2;
+        String s;
+
+        if (d > 0){
+            x1 = (-b + Math.sqrt(d)) / (2 * a);
+            x2 = (-b - Math.sqrt(d)) / (2 * a);
+            s = "Корни уравнения \"ax2 + bx + c = 0\" x1 = " + x1 + ", x2 = " + x2 +
+                    ", потому что дискриминант положительный. d = " + d;
+        } else if (d == 0){
+            x1 = (-b + Math.sqrt(d)) / (2 * a);
+            s = "Корень уравнения \"ax2 + bx + c = 0\" x1 = x2 =" + x1 +
+                    ", потому что дискриминант равен нулю. d = " + d;
+        } else {
+            s = "Корней уравнения \"ax2 + bx + c = 0\" нет, потому что дискриминант отрицательный. d = " + d;
+        }
+
+        return s;
     }
 }

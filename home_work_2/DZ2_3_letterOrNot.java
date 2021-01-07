@@ -29,12 +29,12 @@ public class DZ2_3_letterOrNot {
     }
 
     public static String letterOrNot(int a){
-        String S;
+        String s;
             if ((a >= 65 && a <= 90) || (a >= 97 && a <= 122)){
-                S = "Вы выбрали букву по ASCII. ";
+                s = "Вы выбрали букву по ASCII. ";
             } else {
-                S = "Вы выбрали НЕ букву по ASCII. ";
+                s = "Вы выбрали НЕ букву по ASCII. ";
             }
-        return S;
+        return s;
     }
 }
