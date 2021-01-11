@@ -27,7 +27,7 @@ public class DZ2_1_1_1 {
         long result = 1;
 
         for (int i = 1; i < (vvod+1); i++) {
-            result = result*i;
+            result *= i;
             System.out.println("Результат итерации равен = " + result);
             if (result > Long.MAX_VALUE / (i+1)){
                 System.out.println("На следующей итерации произойдет переполнение переменной result типа long. " +
