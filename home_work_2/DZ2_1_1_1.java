@@ -1,0 +1,40 @@
+/*
+1. Циклы. Для преобразования строки в число можно использовать http://proglang.su/java/numbers-parseint,
+если хотите можете добавить проверки на корректность ввода данных. Число положительное, максимум long:
+1.1. Перемножить числа от 1 до числа (включительно) введенного через аргумент к исполняемой программе.
+Есть нюанс с переполнением, можно добавить проверки и сообщения пользователю.
+Пример: Ввели 5, должно получиться в консоли: 1 * 2 * 3 * 4 * 5 = ответ
+1.1.1. Используя только цикл
+*/
+package home_work_2;
+
+import static java.lang.Integer.parseInt;
+
+public class DZ2_1_1_1 {
+    public static void main(String[] args) {
+
+        int vvod = 0;
+
+        for (String str : args) {
+            vvod = Integer.parseInt(str);
+            System.out.println("Аргумент к исполняемой программе = " + vvod +"\n");
+        }
+
+        System.out.println("\nОтвет = " + peremnozhit(vvod));
+    }
+
+    public static long peremnozhit (int vvod){
+        long result = 1;
+
+        for (int i = 1; i < (vvod+1); i++) {
+            result = result*i;
+            System.out.println("Результат итерации равен = " + result);
+            if (result > Long.MAX_VALUE / (i+1)){
+                System.out.println("На следующей итерации произойдет переполнение переменной result типа long. " +
+                        "Максимальный аргумент равен " + i);
+            }
+        }
+
+        return result;
+    }
+}
