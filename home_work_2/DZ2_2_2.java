@@ -11,7 +11,7 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class DZ2_2_2_UNF {
+public class DZ2_2_2 {
     public static void main(String[] args) {
         int[] array = arrayFromConsole();
         System.out.println("Получился массив " + Arrays.toString(array));
@@ -116,26 +116,40 @@ public class DZ2_2_2_UNF {
     public static void forEachFunction(int[] array) {
         System.out.println("\n\nЭлементы массива через foreach: ");
 
-        for (int number : array) {
-            System.out.print(number);
+        for (int element : array) {
+            System.out.print(element);
         }
 
         System.out.println("\nКаждый второй элемент массива: ");
-        System.out.println("\nПока не знаю как сделать ");
-/*        for (int number : array) {
-            if (number % 2 == 0) {
-                System.out.print(number);
+        int temp;
+        int counter = 0;
+
+        int[] shortArray = new int[array.length / 2];
+        for (int i = 0; i < array.length; i++) {
+            if (i % 2 != 0){
+                temp = array[i];
+                for (int j = (0+counter); j < shortArray.length; j++) {
+                    if (shortArray[j] == 0){
+                        shortArray[j] = temp;
+                        counter ++;
+                        break;
+                    }
+                }
             }
         }
-*/
+
+        for (int element : shortArray) {
+            System.out.print(element);
+        }
 
         System.out.println("\nЭлементы в обратном порядке: ");
-        System.out.println("\nПока не знаю как сделать ");
+        int[] backArray = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            backArray[i] = array[array.length-1-i];
+        }
 
-/*        for (int number : array) {
-            int[] backArray = new int[array.length];
-            backArray[i] = number;
-            System.out.print(number);
-        }*/
+        for (int element : backArray) {
+            System.out.print(element);
+        }
     }
 }

@@ -11,12 +11,15 @@ public class DZ2_1_5_UNF {
             array[i] = i+1;
         }
 
-        for (int i = 0; i < array.length; i++) {
-            System.out.println("2 x " + array[i] + " = " + 2*array[i] + " " +
-                    "3 x " + array[i] + " = " + " " + 3*array[i] + " " +
-                    "4 x " + array[i] + " = " + 4*array[i] + " " +
-                    "5 x " + array[i] + " = " + 5*array[i]);
+        for (int j = 2; j < 6; j++) {
+            for (int i = 0; i < array.length; i++) {
+                System.out.println(j + " x " + array[i] + " = " + j*array[i] + " |" +
+                        "3 x " + array[i] + " = " + " " + 3*array[i] + " " +
+                        "4 x " + array[i] + " = " + 4*array[i] + " " +
+                        "5 x " + array[i] + " = " + 5*array[i]);
+            }
         }
+
 
         for (int i = 0; i < array.length; i++) {
             System.out.println("6 x " + array[i] + " = " + 6*array[i] + " " +
