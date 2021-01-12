@@ -11,12 +11,13 @@ package home_work_2;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class DZ2_2_1_UNF {
+public class DZ2_2_1 {
     public static void main(String[] args) {
         int[] container = arrayFromConsole();
 
         System.out.println("Получился массив " + Arrays.toString(container));
     }
+
     public static int[] arrayFromConsole(){
         Scanner console = new Scanner (System.in);
         System.out.println("Голосуйте за размер массива");
@@ -25,8 +26,15 @@ public class DZ2_2_1_UNF {
 
         System.out.println("Голосуйте за элементы массива");
         for (int i = 0; i < array.length; i++) {
-            array[i] = console.nextInt();
+            try {
+                System.out.println("Голосуйте за элемент номер " + i + ", а если надоело, то напишите любую букву");
+                array[i] = console.nextInt();
+            } catch (java.util.InputMismatchException e){
+                break;
+            }
         }
+
+        console.close();
 
         return array;
     }
