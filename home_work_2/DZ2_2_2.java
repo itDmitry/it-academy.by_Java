@@ -121,20 +121,14 @@ public class DZ2_2_2 {
         }
 
         System.out.println("\nКаждый второй элемент массива: ");
-        int temp;
+
         int counter = 0;
 
         int[] shortArray = new int[array.length / 2];
         for (int i = 0; i < array.length; i++) {
             if (i % 2 != 0){
-                temp = array[i];
-                for (int j = (0+counter); j < shortArray.length; j++) {
-                    if (shortArray[j] == 0){
-                        shortArray[j] = temp;
-                        counter ++;
-                        break;
-                    }
-                }
+                shortArray[counter] = array[i];
+                counter++;
             }
         }
 
