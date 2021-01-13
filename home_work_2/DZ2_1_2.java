@@ -10,7 +10,7 @@
 package home_work_2;
 
 public class DZ2_1_2 {
-    public static <exception_var_1> void main(String[] args) {
+    public static void main(String[] args) {
         int chislo = 0;
         int dlina = 0;
 

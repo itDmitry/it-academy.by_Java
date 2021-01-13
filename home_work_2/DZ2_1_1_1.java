@@ -8,8 +8,6 @@
 */
 package home_work_2;
 
-import static java.lang.Integer.parseInt;
-
 public class DZ2_1_1_1 {
     public static void main(String[] args) {
 
@@ -45,10 +43,12 @@ public class DZ2_1_1_1 {
                 System.out.println(" = " + result);
             }
 
-//            if (result > Long.MAX_VALUE / (i+1)){
-//                System.out.println("\nНа следующей итерации произойдет переполнение переменной result типа long. " +
-//                        "Максимальный аргумент равен " + i);
-//            }
+/*
+           if (result > Long.MAX_VALUE / (i+1)){
+                System.out.println("\nНа следующей итерации произойдет переполнение переменной result типа long. " +
+                        "Максимальный аргумент равен " + i);
+            }
+*/
         }
 
         return result;

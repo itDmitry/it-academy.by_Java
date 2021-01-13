@@ -29,7 +29,6 @@ public class DZ2_1_1_2 {
 
     public static long peremnozhit (int vvod){
         long result = 1;
-        int n;
 
         if (vvod == 0) {
             System.out.print(" = ");

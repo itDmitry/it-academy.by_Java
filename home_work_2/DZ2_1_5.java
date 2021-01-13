@@ -12,26 +12,26 @@ public class DZ2_1_5 {
         }
 
 
-        for (int i = 0; i < array.length; i++) {
+        for (int element : array) {
             for (int j = 2; j < 6; j++) {
-                if (j == 5){
-                    if (array[i] == 10) {
-                        System.out.print(j + " x " + array[i] + " = " + j * array[i]);
+                if (j == 5) {
+                    if (element == 10) {
+                        System.out.print(j + " x " + element + " = " + j * element);
                     } else {
-                        if (j * array[i] < 10) {
-                            System.out.print(j + " x  " + array[i] + " =  " + j * array[i]);
+                        if (j * element < 10) {
+                            System.out.print(j + " x  " + element + " =  " + j * element);
                         } else {
-                            System.out.print(j + " x  " + array[i] + " = " + j * array[i]);
+                            System.out.print(j + " x  " + element + " = " + j * element);
                         }
                     }
                 } else {
-                    if (array[i] == 10) {
-                        System.out.print(j + " x " + array[i] + " = " + j * array[i] + " | ");
+                    if (element == 10) {
+                        System.out.print(j + " x " + element + " = " + j * element + " | ");
                     } else {
-                        if (j * array[i] < 10) {
-                            System.out.print(j + " x  " + array[i] + " =  " + j * array[i] + " | ");
+                        if (j * element < 10) {
+                            System.out.print(j + " x  " + element + " =  " + j * element + " | ");
                         } else {
-                            System.out.print(j + " x  " + array[i] + " = " + j * array[i] + " | ");
+                            System.out.print(j + " x  " + element + " = " + j * element + " | ");
                         }
                     }
                 }
