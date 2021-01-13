@@ -172,9 +172,8 @@ public class DZ2_2_4 {
                 min2=array[i];
             }
         }
-        String answer = min1 + " и " + min2;
 
-        return answer;
+        return min1 + " и " + min2;
     }
 /*
 Сжать массив, удалив элементы, принадлежащие интервалу
