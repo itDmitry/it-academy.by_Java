@@ -4,7 +4,9 @@ DZ2_1_2 - 1.2. Все цифры из числа введенного через
 DZ2_1_3 - 1.3. Возведение в степень.
 DZ2_1_4 - 1.4.* Умножать число long a = 1; пока не произойдёт переполнение.
 DZ2_1_5 - 1.5 Вывести таблицу умножения в консоль.
-DZ2_2_1 - 2.1 Написать метод public static int[] arrayFromConsole() рядом с main.
-DZ2_2_2 - 2.2 Перебор массива при помощи do....while, while, for, foreach.
-DZ2_2_3 - 2.3 Написать метод public static int[] arrayRandom(int size, int maxValueExclusion) рядом с main.
+DZ2_2_1and2_2_2and2_2_3 - 2.1 Написать метод public static int[] arrayFromConsole() рядом с main. + 2.2 Перебор массива при помощи do....while, while, for, foreach. + 2.3 Написать метод public static int[] arrayRandom(int size, int maxValueExclusion) рядом с main.
+DZ2_2_2 - черновик
+DZ2_2_3 - черновик
 DZ2_2_4 - 2.4 Задачи взяты с сайта https://taskcode.ru/array. На сайте есть пояснения по каждой из этих задач.
+
+DZ2_4 folder - 4.* Выполнить сортировку массива с числами. Содержит классы Main и Sort.
