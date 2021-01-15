@@ -21,6 +21,8 @@
 package home_work_2.DZ2_4;
 
 import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -41,12 +43,44 @@ public class Main {
         System.out.println(Arrays.toString(testArray4) + "->" + Arrays.toString(Sorts.bubbleSort(testArray4)));
         System.out.println(Arrays.toString(testArray4) + "->" + Arrays.toString(Sorts.shakerSort(testArray4)));
 
-        int [] array = Sorts.arrayGeneration();
+        int [] array = arrayGeneration();
         System.out.println(Arrays.toString(array) + "->" + Arrays.toString(Sorts.bubbleSort(array)));
         System.out.println(Arrays.toString(array) + "->" + Arrays.toString(Sorts.shakerSort(array)));
 
-        int [] arrayConsole = Sorts.arrayConsoleGeneration();
+        int [] arrayConsole = arrayConsoleGeneration();
         System.out.println(Arrays.toString(arrayConsole) + "->" + Arrays.toString(Sorts.bubbleSort(arrayConsole)));
         System.out.println(Arrays.toString(arrayConsole) + "->" + Arrays.toString(Sorts.shakerSort(arrayConsole)));
+    }
+
+    public static int[] arrayGeneration (){
+        int maxArraySize = 20;
+        int maxElementValue = 100;
+        int[] array = new int[new Random().nextInt(maxArraySize)];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = new Random().nextInt(maxElementValue);
+        }
+
+        return array;
+    }
+
+    public static int[] arrayConsoleGeneration (){
+        Scanner console = new Scanner (System.in);
+        System.out.println("Голосуйте за размер массива");
+
+        int [] array = new int[console.nextInt()];
+
+        System.out.println("Голосуйте за элементы массива");
+        for (int i = 0; i < array.length; i++) {
+            try {
+                System.out.println("Голосуйте за элемент номер " + i + ", а если надоело, то напишите любую букву");
+                array[i] = console.nextInt();
+            } catch (java.util.InputMismatchException e){
+                break;
+            }
+        }
+
+        console.close();
+
+        return array;
     }
 }
