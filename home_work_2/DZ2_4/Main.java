@@ -26,28 +26,27 @@ public class Main {
     public static void main(String[] args) {
 
         int[] testArray1 =  {1,2,3,4,5,6};
-        System.out.println();
-        System.out.println(Arrays.toString(Sorts.bubbleSort(testArray1)));
-        System.out.println(Arrays.toString(Sorts.shakerSort(testArray1)));
+        System.out.println(Arrays.toString(testArray1) + "->" + Arrays.toString(Sorts.bubbleSort(testArray1)));
+        System.out.println(Arrays.toString(testArray1) + "->" + Arrays.toString(Sorts.shakerSort(testArray1)));
 
         int[] testArray2 =  {1,1,1,1};
-        System.out.println(Arrays.toString(Sorts.bubbleSort(testArray2)));
-        System.out.println(Arrays.toString(Sorts.shakerSort(testArray2)));
+        System.out.println(Arrays.toString(testArray2) + "->" + Arrays.toString(Sorts.bubbleSort(testArray2)));
+        System.out.println(Arrays.toString(testArray2) + "->" + Arrays.toString(Sorts.shakerSort(testArray2)));
 
         int[] testArray3 =  {9,1,5,99,9,9};
-        System.out.println(Arrays.toString(Sorts.bubbleSort(testArray3)));
-        System.out.println(Arrays.toString(Sorts.shakerSort(testArray3)));
+        System.out.println(Arrays.toString(testArray3) + "->" + Arrays.toString(Sorts.bubbleSort(testArray3)));
+        System.out.println(Arrays.toString(testArray3) + "->" + Arrays.toString(Sorts.shakerSort(testArray3)));
 
         int[] testArray4 =  {};
-        System.out.println(Arrays.toString(Sorts.bubbleSort(testArray4)));
-        System.out.println(Arrays.toString(Sorts.shakerSort(testArray4)));
+        System.out.println(Arrays.toString(testArray4) + "->" + Arrays.toString(Sorts.bubbleSort(testArray4)));
+        System.out.println(Arrays.toString(testArray4) + "->" + Arrays.toString(Sorts.shakerSort(testArray4)));
 
         int [] array = Sorts.arrayGeneration();
-        System.out.println(Arrays.toString(Sorts.bubbleSort(array)));
-        System.out.println(Arrays.toString(Sorts.shakerSort(array)));
+        System.out.println(Arrays.toString(array) + "->" + Arrays.toString(Sorts.bubbleSort(array)));
+        System.out.println(Arrays.toString(array) + "->" + Arrays.toString(Sorts.shakerSort(array)));
 
         int [] arrayConsole = Sorts.arrayConsoleGeneration();
-        System.out.println(Arrays.toString(Sorts.bubbleSort(arrayConsole)));
-        System.out.println(Arrays.toString(Sorts.shakerSort(arrayConsole)));
+        System.out.println(Arrays.toString(arrayConsole) + "->" + Arrays.toString(Sorts.bubbleSort(arrayConsole)));
+        System.out.println(Arrays.toString(arrayConsole) + "->" + Arrays.toString(Sorts.shakerSort(arrayConsole)));
     }
 }
