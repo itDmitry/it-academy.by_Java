@@ -6,7 +6,7 @@
 с кодами первых и последних букв алфавита. Если код принадлежит этим диапазонам,
 значит это код буквы, если нет - то небуквенный символ.
 */
-package home_work_1;
+package home_work_1.dditional_tasks;
 
 import java.util.Scanner;
 

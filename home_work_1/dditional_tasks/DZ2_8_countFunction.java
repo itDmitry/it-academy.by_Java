@@ -14,7 +14,7 @@ y = 2 * |x| - 1, если x < 0
 Иначе присвоить y результат выражения 2*|x|-1.
 Вывести значение y на экран.
  */
-package home_work_1;
+package home_work_1.dditional_tasks;
 
 import java.util.Scanner;
 

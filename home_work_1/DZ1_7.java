@@ -1,7 +1,5 @@
 package home_work_1;
 
-import java.util.Arrays;
-
 public class DZ1_7 {
     /*
     7.** Создать СТАТИЧЕСКИЙ метод String toBinaryString(byte number) и возвращает двоичное представление числа.
@@ -27,6 +25,8 @@ public class DZ1_7 {
         int [] binaryArray = new int[] {0, 0, 0, 0, 0, 0, 0, 0};
 
         if (number == 0){
+            return String.format("%d%d%d%d%d%d%d%d", binaryArray[0], binaryArray[1], binaryArray[2],
+                    binaryArray[3], binaryArray[4], binaryArray[5], binaryArray[6], binaryArray[7]);
             //Здесь вычислений не нужны, т.к. массив уже нулевой.
         }
 

@@ -19,7 +19,7 @@
 (квадрат длины гипотенузы равен сумме квадратов длин катетов).
 Сравнению полученного значения с радиусом круга.
 */
-package home_work_1;
+package home_work_1.dditional_tasks;
 
 import java.util.Scanner;
 
