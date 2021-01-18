@@ -29,7 +29,7 @@ public class DZ2_1_2 {
             dlina = arg.length();
         }
 
-        System.out.println("\nИтог перемножения равен " + multiplicationOfNumbers(dlina, chislo));
+        System.out.println(multiplicationOfNumbers(dlina, chislo));
     }
 
     public static long multiplicationOfNumbers (int dlinaMassiva, int dlinnoeChislo){
@@ -42,11 +42,15 @@ public class DZ2_1_2 {
             dlinnoeChislo = dlinnoeChislo / 10;
         }
 
-        long result = array[0];
+        long result = 1;
 
-        for (int i = 0; i < (array.length-1); i++) {
-            System.out.println(result + " умножаем на " + array[i+1]);
-            result *= array[i+1];
+        for (int i = 0; i < array.length; i++) {
+            if (i == array.length - 1) {
+                System.out.print(array[i] + " = ");
+            } else {
+                System.out.print(array[i] + " * ");
+            }
+            result *= array[i];
         }
 
         return result;

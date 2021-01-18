@@ -23,7 +23,7 @@ public class DZ2_1_3 {
 
         console.close();
 
-        System.out.println("\nЧисло " + a + " в степени " + b + " равно " + exponentation(a,b));
+        System.out.println("\n" + a + " ^ " + b + " = " + exponentation(a,b));
     }
 
     public static double exponentation(double argument, int stepen){

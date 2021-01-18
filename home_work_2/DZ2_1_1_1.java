@@ -11,7 +11,7 @@ package home_work_2;
 public class DZ2_1_1_1 {
     public static void main(String[] args) {
 
-        int vvod = 0;
+        long vvod = 0;
 
         for (String arg : args) {
             vvod = Integer.parseInt(arg);
@@ -25,22 +25,19 @@ public class DZ2_1_1_1 {
         }
     }
 
-    public static long peremnozhit (int vvod){
+    public static long peremnozhit (long vvod){
         long result = 1;
-
 
         for (int i = 1; i < (vvod+1); i++) {
             result *= i;
-            if (i == 1){
-                System.out.print(i);
-            }
 
             if (i > 1){
                 System.out.print(" * " + i);
-            }
-
-            if (i == vvod){
-                System.out.println(" = " + result);
+                if (i == vvod){
+                    System.out.println(" = " + result);
+                }
+            } else {
+                System.out.print(i);
             }
 
 /*
@@ -49,6 +46,7 @@ public class DZ2_1_1_1 {
                         "Максимальный аргумент равен " + i);
             }
 */
+
         }
 
         return result;
