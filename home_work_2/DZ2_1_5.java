@@ -6,63 +6,51 @@ package home_work_2;
 
 public class DZ2_1_5 {
     public static void main(String[] args) {
-        int[] array = new int[10];
-        for (int i = 0; i < array.length; i++) {
-            array[i] = i+1;
-        }
+        int chisloStrok = 2;
+        int chisloStolbcov = 4;
+        int umnozhitOt = 1;
+        int umnozhitDo = 10;
+        int nachaloTablicbl = 2;
 
+/*
+Хотел использовать это для стрингбилдера, чтобы таблица была ровной при любых значених, но видимо не за чем
+        int count = 0;
+        int maxZnachenie = (chisloStrok*chisloStolbcov + (nachaloTablicbl-1))*umnozhitDo;
+        do {
+            count++;
+            maxZnachenie /= 10;
+        } while (maxZnachenie > 0);
+*/
 
-        for (int element : array) {
-            for (int j = 2; j < 6; j++) {
-                if (j == 5) {
-                    if (element == 10) {
-                        System.out.print(j + " x " + element + " = " + j * element);
-                    } else {
-                        if (j * element < 10) {
-                            System.out.print(j + " x  " + element + " =  " + j * element);
-                        } else {
-                            System.out.print(j + " x  " + element + " = " + j * element);
-                        }
-                    }
-                } else {
-                    if (element == 10) {
-                        System.out.print(j + " x " + element + " = " + j * element + " | ");
-                    } else {
-                        if (j * element < 10) {
-                            System.out.print(j + " x  " + element + " =  " + j * element + " | ");
-                        } else {
-                            System.out.print(j + " x  " + element + " = " + j * element + " | ");
-                        }
-                    }
-                }
-
+        for (int i = 0; i < chisloStrok; i++) {
+            risuemStrokuTablicbl(chisloStolbcov, nachaloTablicbl+i*chisloStolbcov, umnozhitOt, umnozhitDo);
+            if (i < chisloStrok - 1){
+                System.out.println("-----------------------------------------------------");
             }
-            System.out.println();
         }
+    }
 
-        System.out.println("_____________________________________________________");
-        System.out.println();
-
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 6; j < 10; j++) {
-                if (j == 9){
-                    if (array[i] == 10) {
-                        System.out.print(j + " x " + array[i] + " = " + j * array[i]);
+    public static void risuemStrokuTablicbl (int chisloStolbcov, int nachaloTablicbl, int umnozhitOt, int umnozhitDo){
+        for (int i = umnozhitOt; i < umnozhitDo + 1; i++) {
+            for (int j = nachaloTablicbl; j < (nachaloTablicbl + chisloStolbcov); j++) {
+                if ((j + 1 - nachaloTablicbl) % chisloStolbcov == 0){
+                    if (i == 10) {
+                        System.out.print(j + " x " + i + " = " + j * i);
                     } else {
-                        if (j * array[i] < 10) {
-                            System.out.print(j + " x  " + array[i] + " =  " + j * array[i]);
+                        if (j * i < 10) {
+                            System.out.print(j + " x  " + i + " =  " + j * i);
                         } else {
-                            System.out.print(j + " x  " + array[i] + " = " + j * array[i]);
+                            System.out.print(j + " x  " + i + " = " + j * i);
                         }
                     }
                 } else {
-                    if (array[i] == 10) {
-                        System.out.print(j + " x " + array[i] + " = " + j * array[i] + " | ");
+                    if (i == 10) {
+                        System.out.print(j + " x " + i + " = " + j * i + " | ");
                     } else {
-                        if (j * array[i] < 10) {
-                            System.out.print(j + " x  " + array[i] + " =  " + j * array[i] + " | ");
+                        if (j * i < 10) {
+                            System.out.print(j + " x  " + i + " =  " + j * i + " | ");
                         } else {
-                            System.out.print(j + " x  " + array[i] + " = " + j * array[i] + " | ");
+                            System.out.print(j + " x  " + i + " = " + j * i + " | ");
                         }
                     }
                 }
