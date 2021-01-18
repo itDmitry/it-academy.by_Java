@@ -64,6 +64,4 @@ public class DZ2_1_4 {
             a = a * b;
         }
     }
-
-    public static
 }
