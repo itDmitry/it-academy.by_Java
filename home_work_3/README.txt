@@ -1,1 +1,2 @@
-ICalculator interface in cals folder
+Интерфейс ICalculator находится в директории calcs
+Выполнены задания [1,10]
