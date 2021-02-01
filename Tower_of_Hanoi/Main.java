@@ -40,7 +40,8 @@
 	2 * *
 	3 * *
 	4 * 1
-10. Если переместить нельзя то необходимо выдать сообщение о невозможности хода и снова предложить выбрать ход. Пример:
+10. Если переместить нельзя то необходимо выдать сообщение о невозможности хода и снова предложить выбрать ход.
+Пример:
 Было:
 	* * *
 	2 * *
@@ -85,26 +86,41 @@ public class Main {
         int[][] array = new int[x][3];
 
         risuemElementbl(array);
-        vivodimPole(array);
+
+
 
         int otkuda = 0;
         int kuda = 0;
+        int figura = 0;
+        int turnCounter = 0;
+
+        vivodimPole(array);
 
         do {
-            System.out.println("введи с какого шеста двигаем");
-            otkuda = vvodHoda(scanner);
-            System.out.println(array[otkuda-1][1]);
-            System.out.println(proverkaOtkuda(otkuda, array));
-            System.out.println("введи на какой шест двигаем");
-            kuda = vvodHoda(scanner);
 
- //           dvigaem (otkuda, kuda, array);
+            do {
+
+                System.out.println("Введи с какого шеста двигаем");
+                otkuda = vvodHoda(scanner);
+                figura = findFigure(otkuda, array);
+            } while (!proverkaOtkuda(otkuda, array));
+
+            System.out.println("Dведи на какой шест двигаем");
+            kuda = vvodHoda(scanner);
+            turnCounter++;
+            if (proverkaKuda(figura, kuda, array)){
+                dvigaemFiguri(figura, otkuda, kuda, array);
+                System.out.println("Такой ход возможен - перемещаем:");
+                vivodimPole(array);
+            } else {
+                System.out.println("К сожалению данный ход не возможен правилами игры,");
+                vivodimPole(array);
+            }
 
             if (isFinished(array)) {
-                System.out.println("Вы выиграли!");
+                System.out.println("Поздравляем! Вы выиграли!\nЗатрачено ходов " + turnCounter);
             }
         } while (!isFinished(array));
-
     }
 
     public static int[][] risuemElementbl (int[][] array){
@@ -136,21 +152,62 @@ public class Main {
 
     public static boolean proverkaOtkuda(int otkuda, int[][] array) {
         for (int i = 0; i < array.length; i++) {
-            if (array[otkuda-1][i] != 0){
+            if (array[i][otkuda-1] != 0){
                 return true;
             }
         }
         return false;
     }
 
-    public static boolean isFinished (int[][] array){
-        int count = 0;
-        for (int i = 0; i < (array[2].length - 1); i++) {
-            if (array[2][i + 1] > array[2][i]) {
-                count++;
+    public static int findFigure(int otkuda, int[][] array){
+        int figura = 0;
+        for (int i = 0; i < array.length; i++) {
+            figura = array[i][otkuda-1];
+            if (figura != 0){
+                return figura;
             }
         }
-        if (count == (array[2].length - 1)){
+        return figura;
+    }
+
+    public static boolean proverkaKuda(int figura, int kuda, int[][] array){
+        for (int i = 0; i < array.length; i++) {
+            if (array[i][kuda-1] != 0 && array[i][kuda-1] > figura){
+                return true;
+            }
+            if (array[i][kuda-1] != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static int[][] dvigaemFiguri(int figura, int otkuda, int kuda, int[][] array){
+        for (int i = 0; i < array.length; i++) {
+            if (array[i][otkuda-1] == figura) {
+                array[i][otkuda-1] = 0;
+            }
+        }
+        for (int i = 0; i < array.length; i++) {
+            if (array[i][kuda-1] != 0) {
+                array[i-1][kuda-1] = figura;
+                return array;
+            }
+        }
+        array[array.length-1][kuda-1] = figura;
+        return array;
+    }
+
+    public static boolean isFinished (int[][] array){
+        int counter = 0;
+        for (int i = 0; i < array.length-1; i++) {
+            if (array[i][2] < array[i+1][2] && array[i][2] != 0) {
+                counter++;
+            } else {
+                break;
+            }
+        }
+        if (counter == array.length-1){
             return true;
         }
         return false;
