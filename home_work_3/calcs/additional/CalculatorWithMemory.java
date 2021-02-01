@@ -18,7 +18,7 @@ package home_work_3.calcs.additional;
 import home_work_3.calcs.ICalculator;
 
 public class CalculatorWithMemory implements ICalculator {
-    ICalculator icalculator;
+    private ICalculator icalculator;
     private double memory;
     private double calculation;
 
