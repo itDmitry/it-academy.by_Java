@@ -11,32 +11,20 @@ package home_work_4;
 import java.util.Arrays;
 
 public class DataContainer<T>{
-    private T item;
 /*
 * 2. Внутри DataContainer должно быть поле T[] data,
 внутренний массив, которое предназначено для хранения передаваемых объектов.
 * */
     private T[] data;
 
-    public T getData(){
-        return item;
-    }
-
-    public void setData(T item){
-        this.item = item;
-    }
-
-    //Конструкторы
-    public DataContainer (){
-    }
-
-    public DataContainer (T item){
-        this.item = item;
-    }
-
+/*
+Из-за особенностей дженериков в данном классе обязательно будет присутствовать один конструктор DataContainer(T[]).
+Есть и другие способы, но в рамках обучения они будут сложными и с ними мы разбираться будем слишком сложно.
+* */
     public DataContainer (T[] data){
-        this.data = data;
+        this.data = Arrays.copyOf(data, data.length);
     }
+
 /*
 4. В данном классе должен быть метод int add(T item) который добавляет данные во внутреннее поле data.
 	4.1 Если поле data не переполнено,
@@ -55,19 +43,19 @@ public class DataContainer<T>{
 		Метод add вернёт число 3.
 */
     public int add(T item){
-         if (item == null){
-            return -1;
+         if (item != null){
+                 for (int i = 0; i < data.length; i++) {
+                     if (this.data[i] == null) {
+                         data[i] = item;
+                         return i;
+                     }
+                 }
+                 this.data = Arrays.copyOf(this.data, data.length+1);
+                 this.data[this.data.length - 1] = item;
+                 return this.data.length - 1;
+             }
+                return -1;
         }
-        for (int i = 0; i < data.length; i++) {
-            if (this.data[i] == null) {
-                data[i] = item;
-                return (int) data[i-1];
-            }
-        }
-        this.data = Arrays.copyOf(this.data, data.length+1);
-        this.data[data.length - 1] = item;
-        return (int) data[data.length - 2];
-    }
 /*
 5. В данном классе должен быть метод T get(int index).
 Данный метод получает из DataContainer'а, из поля data,
@@ -108,8 +96,8 @@ public class DataContainer<T>{
         if (index >= this.data.length){
             return false;
         } else {
-            this.data[index] = null;
-            this.data = Arrays.copyOf(this.data, data.length-1);
+//            this.data[index] = null;
+            deletingFromData(data, index);
             return true;
         }
     }
@@ -127,15 +115,17 @@ public class DataContainer<T>{
 		* Метод delete вернёт true
 		* */
     public boolean delete(T item){
-        for (T datum : this.data) {
-            if (datum == item){
-                datum = null;
-                this.data = Arrays.copyOf(this.data, data.length-1);
+        for (int index = 0; index < this.data.length; index++) {
+
+        if (this.data[index] == item){
+//                data[index] = null;
+                deletingFromData(data, index);
                 return true;
             }
         }
         return false;
     }
+
 
     /*
     * 9. Добавить НЕ СТАТИЧЕСКИЙ метод void sort(Comparator<.......> comparator).
@@ -148,9 +138,48 @@ public class DataContainer<T>{
 //    }
 
     /*
-    * 10. Переопределить метод toString() в классе и выводить содержимое data без ячеек в которых хранится null.*/
+    * 10. Переопределить метод toString() в классе и выводить содержимое data без ячеек в которых хранится null.
+    * */
 
     public String toString(){
-        return Arrays.toString(this.data);
+        if (this.data != null){
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < this.data.length; i++) {
+                if (this.data[i] != null){
+                    stringBuilder.append(this.data[i]);
+                    stringBuilder.append(" ");
+                }
+            }
+            return stringBuilder.toString();
+//           return Arrays.toString(this.data);
+        } else {
+            return null;
+        }
+    }
+
+    /*11.* В даном классе должен быть СТАТИЧЕСКИЙ метод void sort(DataContainer<.............> container)
+    который будет принимать объект DataContainer с дженериком extends Comparable.
+    Данный метод будет сортировать элементы в ПЕРЕДАННОМ объекте DataContainer
+    используя реализацию сравнения вызываемый у хранимых объектов.
+    12.* В данном классе должен быть СТАТИЧЕСКИЙ метод void sort(DataContainer<.............> container,
+    Comparator<.......> comparator) который будет принимать объект DataContainer и реализацию интерфейса Comparator.
+    Данный метод будет сортировать элементы в ПЕРЕДАННОМ объекте DataContainer
+    используя реализацию сравнения из ПЕРЕДАННОГО объекта интерфейса Comparator.
+    13.** Реализовать в DataContainer интерфейс Iterable
+    */
+
+    private T[] deletingFromData (T[] data, int index){
+        T[] temp1 = Arrays.copyOfRange(this.data, 0, index);
+        T[] temp2 = Arrays.copyOfRange(this.data, index+1, this.data.length);
+        this.data = (T[]) new Object[temp1.length+ temp2.length];
+        int counter = 0;
+        for (int i = 0; i < temp1.length; i++) {
+            this.data[i] = temp1[i];
+            counter++;
+        }
+        for (int i = 0; i < temp2.length; i++) {
+            this.data[counter+i] = temp2[i];
+        }
+        return data;
     }
 }
