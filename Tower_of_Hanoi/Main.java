@@ -77,24 +77,28 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
+
         int x = 0;
         do {
-            System.out.println("Введите число уровней башни от 3 до 8");
-            x = scanner.nextInt();
+            System.out.println("Голосуйте за число уровней башни от 3 до 8");
+            try {
+                x = scanner.nextInt();
+            } catch (java.util.InputMismatchException e) {
+                System.out.println("Вы вбросили бюллетени! Перезапуститесь и проведите честные выборы!");
+                break;
+            }
         } while (x < 3 || x > 8);
 
-        int[][] array = new int[x][3];
-
-        risuemElementbl(array);
-
-
+        HanoiPole hanoiPole = new HanoiPole(x);
+        hanoiPole.vivodimPole();
+    }
+}
+/*
 
         int otkuda = 0;
         int kuda = 0;
         int figura = 0;
         int turnCounter = 0;
-
-        vivodimPole(array);
 
         do {
 
@@ -121,43 +125,17 @@ public class Main {
                 System.out.println("Поздравляем! Вы выиграли!\nЗатрачено ходов " + turnCounter);
             }
         } while (!isFinished(array));
+
+        scanner.close();
     }
 
-    public static int[][] risuemElementbl (int[][] array){
-        for (int i = 0; i < array.length; i++) {
-            array[i][0] = i + 1;
-            array[i][1] = 0;
-            array[i][2] = 0;
-        }
-        return array;
-    }
 
-    public static int[][] vivodimPole (int[][] array){
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i].length; j++) {
-                if (array[i][j] == 0){
-                    System.out.print("*" + "\t");
-                } else {
-                    System.out.print(array[i][j] + "\t");
-                }
-            }
-            System.out.println();
-        }
-        return array;
-    }
 
     public static int vvodHoda (Scanner scanner) {
         return scanner.nextInt();
     }
 
-    public static boolean proverkaOtkuda(int otkuda, int[][] array) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i][otkuda-1] != 0){
-                return true;
-            }
-        }
-        return false;
-    }
+
 
     public static int findFigure(int otkuda, int[][] array){
         int figura = 0;
@@ -213,3 +191,5 @@ public class Main {
         return false;
     }
 }
+
+ */

@@ -31,8 +31,7 @@ public class DataMain {
 
         System.out.println("Вывод массиваа после переопределения метода toString (удаляет null):");
         System.out.println(dataContainer.toString());
-
-
+        System.out.println(Arrays.asList(dataContainer.getItems()).toString());
 
 
     }
