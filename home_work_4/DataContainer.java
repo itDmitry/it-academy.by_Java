@@ -126,7 +126,6 @@ public class DataContainer<T>{
         return false;
     }
 
-
     /*
     * 9. Добавить НЕ СТАТИЧЕСКИЙ метод void sort(Comparator<.......> comparator).
     * Данный метод занимается сортировкой данных записанных в поле data
@@ -144,19 +143,21 @@ public class DataContainer<T>{
     public String toString(){
         if (this.data != null){
             StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("[");
             for (int i = 0; i < this.data.length; i++) {
                 if (this.data[i] != null){
                     stringBuilder.append(this.data[i]);
-                    stringBuilder.append(" ");
+                    if (i != (this.data.length - 1)){
+                        stringBuilder.append(", ");
+                    }
                 }
             }
+            stringBuilder.append("]");
             return stringBuilder.toString();
-//           return Arrays.toString(this.data);
         } else {
             return null;
         }
     }
-
 
     /*11.* В даном классе должен быть СТАТИЧЕСКИЙ метод void sort(DataContainer<.............> container)
     который будет принимать объект DataContainer с дженериком extends Comparable.

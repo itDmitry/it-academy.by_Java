@@ -83,7 +83,7 @@ public class Main {
             System.out.println("Голосуйте за число уровней башни от 3 до 8");
             try {
                 x = scanner.nextInt();
-            } catch (java.util.InputMismatchException e) {
+            } catch (RuntimeException e) {
                 System.out.println("Вы вбросили бюллетени! Перезапуститесь и проведите честные выборы!");
                 break;
             }
@@ -91,6 +91,8 @@ public class Main {
 
         HanoiPole hanoiPole = new HanoiPole(x);
         hanoiPole.vivodimPole();
+
+        scanner.close();
     }
 }
 /*

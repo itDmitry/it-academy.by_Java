@@ -1,9 +1,12 @@
 package home_work_4;
 
-import java.sql.SQLOutput;
+import home_work_3.calcs.ICalculator;
+import home_work_3.calcs.additional.CalculatorWithCounterAutoSuper;
+import home_work_3.calcs.simple.CalculatorWithOperator;
+
 import java.util.Arrays;
 
-public class DataMain {
+public class DataMain{
     public static void main(String[] args) {
         DataContainer<String> dataContainer =
                 new DataContainer<>(new String[] {"10", "1", null, "kjk", "drw", "lol", null, null, "0"});
@@ -31,7 +34,16 @@ public class DataMain {
 
         System.out.println("Вывод массиваа после переопределения метода toString (удаляет null):");
         System.out.println(dataContainer.toString());
-        System.out.println(Arrays.asList(dataContainer.getItems()).toString());
+
+
+
+
+
+        DataContainer<ICalculator> newContainer = new DataContainer<>(new ICalculator[] {new CalculatorWithCounterAutoSuper(), new CalculatorWithOperator(),
+                new CalculatorWithOperator()});
+
+        System.out.println(newContainer.toString());
+
 
 
     }
