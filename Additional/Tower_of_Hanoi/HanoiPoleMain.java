@@ -71,6 +71,7 @@
 */
 package Additional.Tower_of_Hanoi;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class HanoiPoleMain {
@@ -93,6 +94,11 @@ public class HanoiPoleMain {
         HanoiPole hanoiPole = new HanoiPole(x);
         hanoiPole.vivodimPole();
 
+        System.out.println("Выбери режим игры. 1 - Человек или 2 - Робот");
+
+        int vibor = scanner.nextInt();
+
+        if (vibor == 1) {
         System.out.println("Если надоест, введите 0 для завершения игры.");
 
         int hod;
@@ -129,10 +135,43 @@ public class HanoiPoleMain {
 
         System.out.println("Поздравляем! Вы выиграли без вбросов!\nЗатрачено ходов " +
                 hanoiPole.getTurnCounter());
+
+        } else if (vibor ==2 ){
+
+            int hod;
+            int counter = 0;
+
+            do {
+                hod = 1 + (int) (Math.random() * 3);
+
+                if (!hanoiPole.checkOtkuda(hod)){
+                    continue;
+                } else {
+                    hanoiPole.getFigura(hod);
+                }
+
+                hod = 1 + (int) (Math.random() * 3);
+
+                if (!hanoiPole.checkKuda(hod)){
+                    continue;
+                } else {
+                    hanoiPole.makeTurn(hod);
+                    hanoiPole.vivodimPole();
+                }
+                counter++;
+            } while (!hanoiPole.finishCheck());
+
+            System.out.println("ИИ провел выборы!\nЗатрачено ходов " +
+                    hanoiPole.getTurnCounter());
+        } else {
+
+        }
     }
 
     public static int vvodHoda (Scanner scanner) {
         return scanner.nextInt();
     }
+
+
 
 }

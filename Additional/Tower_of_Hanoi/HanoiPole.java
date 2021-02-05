@@ -4,6 +4,9 @@ public class HanoiPole {
     private int[][] pole;
     private int figura;
     private int turnCounter;
+    private int koorditana1;
+    private int koorditana2;
+
 
     public int getTurnCounter() {
         return this.turnCounter;
@@ -53,6 +56,8 @@ public class HanoiPole {
             if (temp != 0){
                 this.figura = temp;
                 this.pole[i][otkuda-1] = 0;
+                this.koorditana1 = i;
+                this.koorditana2 = otkuda-1;
                 break;
             }
         }
@@ -64,6 +69,7 @@ public class HanoiPole {
                 return true;
             }
             if (this.pole[i][kuda-1] != 0) {
+                this.pole[koorditana1][koorditana2] = this.figura;
                 return false;
             }
         }
