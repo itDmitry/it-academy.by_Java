@@ -69,11 +69,11 @@
 17.* Дать возможность указать большее количество колец - до 20.
 Также дать возможность выбора количества стержней - до 8
 */
-package Tower_of_Hanoi;
+package Additional.Tower_of_Hanoi;
 
 import java.util.Scanner;
 
-public class Main {
+public class HanoiPoleMain {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -85,14 +85,46 @@ public class Main {
                 x = scanner.nextInt();
             } catch (RuntimeException e) {
                 System.out.println("Вы вбросили бюллетени! Перезапуститесь и проведите честные выборы!");
-                break;
+                return;
             }
         } while (x < 3 || x > 8);
 
+        System.out.println("Вы проголосовали за разммер башни, равный " + x + ". Отрисовываю поле...");
         HanoiPole hanoiPole = new HanoiPole(x);
         hanoiPole.vivodimPole();
 
+        System.out.println("Если надоесть, напишите EXIT");
+
+    }
+}
+/*
+        do {
+
+                System.out.println("Введи с какого шеста двигаем фигуру");
+                hanoiPole.chooseFigura(Integer.valueOf(vvodHoda(scanner)));
+
+            System.out.println("Dведи на какой шест двигаем");
+            kuda = vvodHoda(scanner);
+            turnCounter++;
+            if (proverkaKuda(figura, kuda, array)){
+                dvigaemFiguri(figura, otkuda, kuda, array);
+                System.out.println("Такой ход возможен - перемещаем:");
+                vivodimPole(array);
+            } else {
+                System.out.println("К сожалению данный ход не возможен правилами игры,");
+                vivodimPole(array);
+            }
+
+            if (isFinished(array)) {
+                System.out.println("Поздравляем! Вы выиграли!\nЗатрачено ходов " + turnCounter);
+            }
+        } while (!isFinished(array));
+
         scanner.close();
+    }
+
+    public static String vvodHoda (Scanner scanner) {
+        return scanner.nextLine();
     }
 }
 /*
@@ -133,22 +165,11 @@ public class Main {
 
 
 
-    public static int vvodHoda (Scanner scanner) {
-        return scanner.nextInt();
-    }
 
 
 
-    public static int findFigure(int otkuda, int[][] array){
-        int figura = 0;
-        for (int i = 0; i < array.length; i++) {
-            figura = array[i][otkuda-1];
-            if (figura != 0){
-                return figura;
-            }
-        }
-        return figura;
-    }
+
+
 
     public static boolean proverkaKuda(int figura, int kuda, int[][] array){
         for (int i = 0; i < array.length; i++) {

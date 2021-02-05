@@ -8,19 +8,23 @@
 */
 package home_work_4;
 
-import java.util.Arrays;
+import java.util.*;
+import java.util.function.Consumer;
 
-public class DataContainer<T>{
+public class DataContainer<T> implements Iterable<T>{
 /*
 * 2. Внутри DataContainer должно быть поле T[] data,
 внутренний массив, которое предназначено для хранения передаваемых объектов.
 * */
+
     private T[] data;
 
 /*
-Из-за особенностей дженериков в данном классе обязательно будет присутствовать один конструктор DataContainer(T[]).
+3. Из-за особенностей дженериков в данном классе обязательно будет присутствовать один конструктор DataContainer(T[]).
 Есть и другие способы, но в рамках обучения они будут сложными и с ними мы разбираться будем слишком сложно.
 * */
+
+    public DataContainer (){}
     public DataContainer (T[] data){
         this.data = Arrays.copyOf(data, data.length);
     }
@@ -33,7 +37,8 @@ public class DataContainer<T>{
 		Должно получиться data = [1, 2, 3, 777, null, null]. Метод add вернёт число 3.
 		4.1.2 Пример: data = [1, 2, 3, null, null, null]. Вызвали add(null).
 		Должно получиться data = [1, 2, 3, null, null, null].
-		Метод add вернёт число -1. -1 будет индикатором того что данный элемент в наш контейнер вставлять нельзя.
+		Метод add вернёт число -1.
+		-1 будет индикатором того что данный элемент в наш контейнер вставлять нельзя.
 		4.1.3 Пример: data = [1, null, 3, null, null, null]. Вызвали add(777).
 		Должно получиться data = [1, 777, 3, null, null, null]. Метод add вернёт число 1.
 	4.2 В случае если поле data переполнено,
@@ -42,20 +47,23 @@ public class DataContainer<T>{
 		4.2.1 Пример: data = [1, 2, 3]. Вызвали add(777). Должно получиться data = [1, 2, 3, 777].
 		Метод add вернёт число 3.
 */
+
     public int add(T item){
-         if (item != null){
-                 for (int i = 0; i < data.length; i++) {
-                     if (this.data[i] == null) {
-                         data[i] = item;
-                         return i;
-                     }
-                 }
-                 this.data = Arrays.copyOf(this.data, data.length+1);
-                 this.data[this.data.length - 1] = item;
-                 return this.data.length - 1;
-             }
-                return -1;
+        if (item == null) {
+            return -1;
+        } else {
+            for (int i = 0; i < data.length; i++) {
+                if (this.data[i] == null) {
+                    data[i] = item;
+                    return i;
+                }
+            }
+            this.data = Arrays.copyOf(this.data, data.length+1);
+            this.data[this.data.length - 1] = item;
+            return this.data.length - 1;
         }
+    }
+
 /*
 5. В данном классе должен быть метод T get(int index).
 Данный метод получает из DataContainer'а, из поля data,
@@ -64,6 +72,7 @@ public class DataContainer<T>{
 	Метод add вернул число 0. Вызываем get(0). Метод get возвращает 9999
 	5.2 Пример: data = [9999]. Вызываем get(1). Метод get возвращает null
 */
+
     public T get(int index){
         if (index >= this.data.length){
             return null;
@@ -92,12 +101,12 @@ public class DataContainer<T>{
 		7.3.1 Пример data = [1, 2, 3, 777]. Вызывают delete(2). Должно получиться data = [1, 2, 777].
 		Метод delete вернёт true
      */
+
     public boolean delete(int index){
-        if (index >= this.data.length){
+        if (index >= this.data.length || index < 0){
             return false;
         } else {
-//            this.data[index] = null;
-            deletingFromData(data, index);
+            deletingFromData(index);
             return true;
         }
     }
@@ -114,16 +123,15 @@ public class DataContainer<T>{
 		8.3.1 Пример data = [1, 2, 3, 777, 3]. Вызывают delete(3). Должно получиться data = [1, 2, 777, 3].
 		* Метод delete вернёт true
 		* */
-    public boolean delete(T item){
-        for (int index = 0; index < this.data.length; index++) {
 
-        if (this.data[index] == item){
-//                data[index] = null;
-                deletingFromData(data, index);
-                return true;
+    public boolean delete(T item){
+        for (int i= 0; i < this.data.length; i++) {
+            if (this.data[i] == item){
+                    deletingFromData(i);
+                    return true;
+                }
             }
-        }
-        return false;
+            return false;
     }
 
     /*
@@ -132,9 +140,36 @@ public class DataContainer<T>{
     * используя реализацию сравнения из ПЕРЕДАННОГО объекта comparator.
     * */
 
-//    public void sort(Comparator<.......> comparator){
-//
-//    }
+    /*    public void sort(Comparator<T> comparator){
+        Arrays.sort(this.data, comparator);
+    }*/
+
+    public void sort(Comparator<T> comparator) {
+        boolean isSorted = false;
+        while (!isSorted) {
+            isSorted = true;
+            for (int i = 0; i < (this.data.length - 1); i++) {
+                if (this.data[i] == null && this.data[i + 1] == null) {
+                    continue;
+                } else if (this.data[i + 1] == null) {
+                    continue;
+                } else if (this.data[i] == null) {
+                    swap(i, i+1);
+                    isSorted = false;
+                } else if (comparator.compare(this.data[i], this.data[i + 1]) < 0) {
+                    continue;
+                } else if (comparator.compare(this.data[i], this.data[i + 1]) == 0) {
+                    continue;
+                } else {
+                    swap(i, i+1);
+                    isSorted = false;
+                }
+                if (isSorted) {
+                    break;
+                }
+            }
+        }
+    }
 
     /*
     * 10. Переопределить метод toString() в классе и выводить содержимое data без ячеек в которых хранится null.
@@ -163,25 +198,56 @@ public class DataContainer<T>{
     который будет принимать объект DataContainer с дженериком extends Comparable.
     Данный метод будет сортировать элементы в ПЕРЕДАННОМ объекте DataContainer
     используя реализацию сравнения вызываемый у хранимых объектов.
+    */
+
+    public static void sort (DataContainer<String> container){
+        Arrays.sort(container.getItems());
+    }
+
+    /*
     12.* В данном классе должен быть СТАТИЧЕСКИЙ метод void sort(DataContainer<.............> container,
-    Comparator<.......> comparator) который будет принимать объект DataContainer и реализацию интерфейса Comparator.
+    Comparator<.......> comparator)
+    который будет принимать объект DataContainer и реализацию интерфейса Comparator.
     Данный метод будет сортировать элементы в ПЕРЕДАННОМ объекте DataContainer
     используя реализацию сравнения из ПЕРЕДАННОГО объекта интерфейса Comparator.
+    */
+
+    public static void sort (DataContainer<String> container, Comparator<String> comparator){
+        Arrays.sort(container.getItems(), comparator);
+    }
+
+    /*
     13.** Реализовать в DataContainer интерфейс Iterable
     */
 
-    private T[] deletingFromData (T[] data, int index){
+    @Override
+    public Iterator<T> iterator() {
+        return null;
+    }
+
+    @Override
+    public void forEach(Consumer<? super T> action) {
+
+    }
+
+    @Override
+    public Spliterator<T> spliterator() {
+        return null;
+    }
+
+    private void deletingFromData (int index){
         T[] temp1 = Arrays.copyOfRange(this.data, 0, index);
         T[] temp2 = Arrays.copyOfRange(this.data, index+1, this.data.length);
-        this.data = (T[]) new Object[temp1.length+ temp2.length];
-        int counter = 0;
-        for (int i = 0; i < temp1.length; i++) {
-            this.data[i] = temp1[i];
-            counter++;
-        }
+        this.data = Arrays.copyOf(temp1, temp1.length + temp2.length);;
         for (int i = 0; i < temp2.length; i++) {
-            this.data[counter+i] = temp2[i];
+            this.data[temp1.length+i] = temp2[i];
         }
-        return data;
     }
+
+    public void swap (int i, int j) {
+        T temp = this.data[i];
+        this.data[i] = this.data[j];
+        this.data[j] = temp;
+    }
+
 }

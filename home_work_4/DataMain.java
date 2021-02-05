@@ -1,21 +1,22 @@
 package home_work_4;
 
-import home_work_3.calcs.ICalculator;
-import home_work_3.calcs.additional.CalculatorWithCounterAutoSuper;
-import home_work_3.calcs.simple.CalculatorWithOperator;
-
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class DataMain{
     public static void main(String[] args) {
         DataContainer<String> dataContainer =
-                new DataContainer<>(new String[] {"10", "1", null, "kjk", "drw", "lol", null, null, "0"});
+                new DataContainer<>(new String[] {"10", "1", "kjk", null, null, "drw", null, "lol", null, "0"});
 
         System.out.println("Массив элементов после инициализации");
         System.out.println(Arrays.toString(dataContainer.getItems()));
 
         System.out.println("Добавление элемента в массив. Индекс добавленного элемента:");
         System.out.println(dataContainer.add("1"));
+
+        System.out.println("А если добавить null?");
+        System.out.println(dataContainer.add(null));
+
         System.out.println("Массив элементов после добавления");
         System.out.println(Arrays.toString(dataContainer.getItems()));
 
@@ -35,16 +36,33 @@ public class DataMain{
         System.out.println("Вывод массиваа после переопределения метода toString (удаляет null):");
         System.out.println(dataContainer.toString());
 
+        //Это тест компаратора
+        Comparator<String> comparator = new Comparator<>() {
+            @Override
+            public int compare(String o1, String o2) {
+                /*
+                //Здесь все было шикарно, пока не пришлось писать свою реализацию,
+                // а null интереснее обрабатывать в ней.
+               if (o1 == null && o2 == null) {
+                    return 0;
+                }
+                if (o1 == null) {
+                    return 1;
+                }
+                if (o2 == null) {
+                    return -1;
+                } */
+                return o1.compareTo(o2);
+            }
 
-
-
-
-        DataContainer<ICalculator> newContainer = new DataContainer<>(new ICalculator[] {new CalculatorWithCounterAutoSuper(), new CalculatorWithOperator(),
-                new CalculatorWithOperator()});
-
-        System.out.println(newContainer.toString());
-
-
+            @Override
+            public boolean equals(Object obj) {
+                return false;
+            }
+        };
+        dataContainer.sort(comparator);
+        System.out.println("Вывод массиваа после сортировки:");
+        System.out.println(Arrays.toString(dataContainer.getItems()));
 
     }
 }

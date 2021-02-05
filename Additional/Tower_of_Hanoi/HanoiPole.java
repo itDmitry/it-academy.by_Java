@@ -1,7 +1,8 @@
-package Tower_of_Hanoi;
+package Additional.Tower_of_Hanoi;
 
 public class HanoiPole {
     private int[][] pole;
+    private int figura;
 
     public HanoiPole (int size){
         this.pole = new int[size][3];
@@ -28,5 +29,16 @@ public class HanoiPole {
             System.out.println();
         }
     }
+
+    public void chooseFigura(int otkuda){
+        int figura = 0;
+        for (int i = 0; i < this.pole.length; i++) {
+            figura = this.pole[i][otkuda-1];
+            if (figura != 0){
+                this.figura = figura;
+            }
+        }
+    }
+
 
 }

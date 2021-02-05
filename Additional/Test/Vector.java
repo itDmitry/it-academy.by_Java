@@ -1,4 +1,4 @@
-package Tests;
+package Additional.Test;
 
 public class Vector {
     private double x;
