@@ -93,126 +93,46 @@ public class HanoiPoleMain {
         HanoiPole hanoiPole = new HanoiPole(x);
         hanoiPole.vivodimPole();
 
-        System.out.println("Если надоесть, напишите EXIT");
+        System.out.println("Если надоест, введите 0 для завершения игры.");
 
-    }
-}
-/*
-        do {
-
-                System.out.println("Введи с какого шеста двигаем фигуру");
-                hanoiPole.chooseFigura(Integer.valueOf(vvodHoda(scanner)));
-
-            System.out.println("Dведи на какой шест двигаем");
-            kuda = vvodHoda(scanner);
-            turnCounter++;
-            if (proverkaKuda(figura, kuda, array)){
-                dvigaemFiguri(figura, otkuda, kuda, array);
-                System.out.println("Такой ход возможен - перемещаем:");
-                vivodimPole(array);
-            } else {
-                System.out.println("К сожалению данный ход не возможен правилами игры,");
-                vivodimPole(array);
-            }
-
-            if (isFinished(array)) {
-                System.out.println("Поздравляем! Вы выиграли!\nЗатрачено ходов " + turnCounter);
-            }
-        } while (!isFinished(array));
-
-        scanner.close();
-    }
-
-    public static String vvodHoda (Scanner scanner) {
-        return scanner.nextLine();
-    }
-}
-/*
-
-        int otkuda = 0;
-        int kuda = 0;
-        int figura = 0;
-        int turnCounter = 0;
+        int hod;
 
         do {
+            System.out.println("C какого шеста двигаем фигуру");
+            hod = vvodHoda(scanner);
 
-            do {
+            if (hod == 0){
+                System.out.println("Выборы завершены по инициативе избирателя.");
+                return;
+            } else if (!hanoiPole.checkOtkuda(hod)){
+                System.out.println("Такой ход невозможен");
+                continue;
+            } else {
+                hanoiPole.getFigura(hod);
+            }
 
-                System.out.println("Введи с какого шеста двигаем");
-                otkuda = vvodHoda(scanner);
-                figura = findFigure(otkuda, array);
-            } while (!proverkaOtkuda(otkuda, array));
+            System.out.println("На какой шест двигаем фигуру");
+            hod = vvodHoda(scanner);
 
-            System.out.println("Dведи на какой шест двигаем");
-            kuda = vvodHoda(scanner);
-            turnCounter++;
-            if (proverkaKuda(figura, kuda, array)){
-                dvigaemFiguri(figura, otkuda, kuda, array);
+            if (hod == 0){
+                System.out.println("Выборы завершены по инициативе избирателя.");
+                return;
+            } else if (!hanoiPole.checkKuda(hod)){
+                System.out.println("Такой ход невозможен");
+                continue;
+            } else {
                 System.out.println("Такой ход возможен - перемещаем:");
-                vivodimPole(array);
-            } else {
-                System.out.println("К сожалению данный ход не возможен правилами игры,");
-                vivodimPole(array);
+                hanoiPole.makeTurn(hod);
+                hanoiPole.vivodimPole();
             }
+        } while (!hanoiPole.finishCheck());
 
-            if (isFinished(array)) {
-                System.out.println("Поздравляем! Вы выиграли!\nЗатрачено ходов " + turnCounter);
-            }
-        } while (!isFinished(array));
-
-        scanner.close();
+        System.out.println("Поздравляем! Вы выиграли без вбросов!\nЗатрачено ходов " +
+                hanoiPole.getTurnCounter());
     }
 
-
-
-
-
-
-
-
-
-    public static boolean proverkaKuda(int figura, int kuda, int[][] array){
-        for (int i = 0; i < array.length; i++) {
-            if (array[i][kuda-1] != 0 && array[i][kuda-1] > figura){
-                return true;
-            }
-            if (array[i][kuda-1] != 0) {
-                return false;
-            }
-        }
-        return true;
+    public static int vvodHoda (Scanner scanner) {
+        return scanner.nextInt();
     }
 
-    public static int[][] dvigaemFiguri(int figura, int otkuda, int kuda, int[][] array){
-        for (int i = 0; i < array.length; i++) {
-            if (array[i][otkuda-1] == figura) {
-                array[i][otkuda-1] = 0;
-            }
-        }
-        for (int i = 0; i < array.length; i++) {
-            if (array[i][kuda-1] != 0) {
-                array[i-1][kuda-1] = figura;
-                return array;
-            }
-        }
-        array[array.length-1][kuda-1] = figura;
-        return array;
-    }
-
-    public static boolean isFinished (int[][] array){
-        int counter = 0;
-        for (int i = 0; i < array.length-1; i++) {
-            if (array[i][2] < array[i+1][2] && array[i][2] != 0) {
-                counter++;
-            } else {
-                break;
-            }
-        }
-        if (counter == array.length-1){
-            return true;
-        }
-        return false;
-    }
 }
-
- */
