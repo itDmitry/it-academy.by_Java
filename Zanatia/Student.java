@@ -1,3 +1,10 @@
+/*
+1. Создать класс Student с полями порядковый номер (int),
+имя (Строка размером от 3 до 10 русских символов),
+возраст (7-17),
+оценка(0.0-10.0),
+признак участия в олимпиадах (bool).
+*/
 package Zanatia;
 
 public class Student {
@@ -5,14 +12,14 @@ public class Student {
     private final String name;
     private final int age;
     private final double rating;
-    private final boolean participation;
+    private final boolean participant;
 
-    public Student (int serialNumber, String name, int age, double rating, boolean participation){
+    public Student (int serialNumber, String name, int age, double rating, boolean participant){
         this.serialNumber = serialNumber;
         this.name = name;
         this.age = age;
         this.rating = rating;
-        this.participation = participation;
+        this.participant = participant;
     }
 
     public int getSerialNumber() {
@@ -31,7 +38,8 @@ public class Student {
         return rating;
     }
 
-    public boolean isParticipation() {
-        return participation;
+    public boolean isParticipant() {
+        return participant;
     }
+
 }
