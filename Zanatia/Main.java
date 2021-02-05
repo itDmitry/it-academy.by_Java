@@ -26,12 +26,12 @@ public class Main {
         Random random = new Random();
         for (int i = 0; i < 10000; i++) {
             listOfStudents.add(new Student(i+1, randomNameGenerator(),
-                    7 + random.nextInt()*(17 - 7 + 1), random.nextDouble()*10,
+                    (int) (7 + Math.random()*(17 - 7 + 1)), random.nextDouble()*10,
                     random.nextBoolean()));
         }
 
         ArrayList<Student> filteredStudents = new ArrayList<>();
-        filteredStudents = filterByAgeAndRating(filteredStudents);
+        filteredStudents = filterByAgeAndRating(listOfStudents);
 
         ArrayList<Student> sortedStudentsByName = new ArrayList<>();
         sortedStudentsByName = sortByName(filteredStudents);
@@ -43,7 +43,7 @@ public class Main {
 
     public static ArrayList<Student> filterByAgeAndRating (ArrayList<Student> arrayList){
 
-        ArrayList<Student> filteredStudentsList = new ArrayList();
+        ArrayList<Student> filteredStudentsList = new ArrayList<>();
 
         for (Student student : arrayList) {
             if (student.getAge() >= 12 && student.getRating() >= 8) {

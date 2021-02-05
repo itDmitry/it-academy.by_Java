@@ -23,23 +23,23 @@ public class Student {
     }
 
     public int getSerialNumber() {
-        return serialNumber;
+        return this.serialNumber;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public int getAge() {
-        return age;
+        return this.age;
     }
 
     public double getRating() {
-        return rating;
+        return this.rating;
     }
 
     public boolean isParticipant() {
-        return participant;
+        return this.participant;
     }
 
 }
