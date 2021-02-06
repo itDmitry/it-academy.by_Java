@@ -17,6 +17,9 @@
 * */
 package Zanatia;
 
+import Zanatia.Comporators.StudentNameComporator;
+import Zanatia.dto.Student;
+
 import java.util.*;
 
 public class Main {
@@ -33,8 +36,8 @@ public class Main {
         ArrayList<Student> filteredStudents = new ArrayList<>();
         filteredStudents = filterByAgeAndRating(listOfStudents);
 
-        ArrayList<Student> sortedStudentsByName = new ArrayList<>();
-        sortedStudentsByName = sortByName(filteredStudents);
+        StudentNameComporator comporator = new StudentNameComporator();
+        sortWithComporatorBubble(filteredStudents, comporator);
 
         for (int i = 0; i < 10; i++) {
             printStudent(filteredStudents.get(i));
@@ -53,15 +56,63 @@ public class Main {
         return filteredStudentsList;
     }
 
-    public static ArrayList<Student> sortByName (ArrayList<Student> arrayList){
-
-        ArrayList sortedStudentsList = new ArrayList();
-
-        return sortedStudentsList;
+    public static <T> void sortWithComporatorBubble(List<T> container, Comparator<T> comparator) {
+        int dlinacontainera = container.size();
+        boolean isSorted = false;
+        while (!isSorted) {
+            isSorted = true;
+            for (int i = 0; i < (dlinacontainera - 1); i++) {
+                T first = container.get(i);
+                T second = container.get(i+1);
+                int compare = comparator.compare(container.get(i), container.get(i+1));
+                if (compare > 0 ) {
+                   container.set(i, second);
+                   container.set(i+1, first);
+                   isSorted = false;
+                }
+                if (isSorted) {
+                    break;
+                }
+            }
+        }
     }
 
-    public static void listSort(ArrayList arrayList){
-
+    public static <T> void sortWithComporatorShaker(List<T> container, Comparator<T> comparator) {
+        int dlinacontainera = container.size();
+        int leftBorder = 0;
+        int rightBorder = dlinacontainera - 1;
+        boolean isSorted;
+        while (leftBorder < rightBorder) {
+            isSorted = true;
+            for (int i = leftBorder; i < rightBorder; i++) {
+                T first = container.get(i);
+                T second = container.get(i+1);
+                int compare = comparator.compare(container.get(i), container.get(i+1));
+                if (compare > 0) {
+                    container.set(i, second);
+                    container.set(i+1, first);
+                    isSorted = false;
+                }
+            }
+            if (isSorted) {
+                break;
+            }
+            rightBorder--;
+            for (int i = rightBorder; i > leftBorder; i--) {
+                T first = container.get(i-1);
+                T second = container.get(i);
+                int compare = comparator.compare(container.get(i-1), container.get(i));
+                if (compare > 0) {
+                    container.set(i-1, second);
+                    container.set(i, first);
+                    isSorted = false;
+                }
+            }
+            leftBorder++;
+            if (isSorted) {
+                break;
+            }
+        }
     }
 
 

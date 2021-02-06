@@ -5,16 +5,16 @@
 оценка(0.0-10.0),
 признак участия в олимпиадах (bool).
 */
-package Zanatia;
+package Zanatia.dto;
 
-public class Student {
+public class Student implements Comparable<Student> {
     private final int serialNumber;
     private final String name;
     private final int age;
     private final double rating;
     private final boolean participant;
 
-    public Student (int serialNumber, String name, int age, double rating, boolean participant){
+    public Student(int serialNumber, String name, int age, double rating, boolean participant) {
         this.serialNumber = serialNumber;
         this.name = name;
         this.age = age;
@@ -42,4 +42,8 @@ public class Student {
         return this.participant;
     }
 
+    @Override
+    public int compareTo(Student o) {
+        return this.name.compareTo(o.name);
+    }
 }
