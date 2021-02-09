@@ -1,6 +1,6 @@
 package Zanatia.suppliers;
 
-import Zanatia.api.iRandom;
+import Zanatia.core.Random.api.iRandom;
 import Zanatia.dto.Student;
 
 import java.util.concurrent.atomic.AtomicInteger;

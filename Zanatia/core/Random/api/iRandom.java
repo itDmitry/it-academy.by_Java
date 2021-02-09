@@ -1,4 +1,4 @@
-package Zanatia.api;
+package Zanatia.core.Random.api;
 
 public interface iRandom {
     /**

@@ -1,6 +1,6 @@
-package Zanatia;
+package Zanatia.core.Random;
 
-import Zanatia.api.iRandom;
+import Zanatia.core.Random.api.iRandom;
 
 public class FakeRandom implements iRandom {
     @Override
@@ -15,7 +15,12 @@ public class FakeRandom implements iRandom {
 
     @Override
     public String randomString(int min, int max) {
-        return "Случайное имя";
+        StringBuilder builder = new StringBuilder();
+        int length = (int) (Math.random()*10);
+        for(int i = 0; i < length; i++) {
+            builder.append((char)(Math.random()*26 + 'a'));
+        }
+        return builder.toString();
     }
 
     @Override

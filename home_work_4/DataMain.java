@@ -40,9 +40,6 @@ public class DataMain{
         Comparator<String> comparator = new Comparator<>() {
             @Override
             public int compare(String o1, String o2) {
-                /*
-                //Здесь все было шикарно, пока не пришлось писать свою реализацию,
-                // а null интереснее обрабатывать в ней.
                if (o1 == null && o2 == null) {
                     return 0;
                 }
@@ -51,7 +48,7 @@ public class DataMain{
                 }
                 if (o2 == null) {
                     return -1;
-                } */
+                }
                 return o1.compareTo(o2);
             }
 
@@ -61,8 +58,28 @@ public class DataMain{
             }
         };
         dataContainer.sort(comparator);
-        System.out.println("Вывод массиваа после сортировки:");
+        System.out.println("Вывод массиваа после сортировки (comporator):");
         System.out.println(Arrays.toString(dataContainer.getItems()));
+
+        DataContainer<String> dataContainer2 =
+                new DataContainer<>(new String[] {"10", "1", "kjk", "drw", "lol", "0"});
+
+        System.out.println("Массив элементов dataContainer2 после инициализации");
+        System.out.println(Arrays.toString(dataContainer2.getItems()));
+
+        dataContainer.sort(dataContainer2);
+        System.out.println("Вывод массиваа после сортировки (dataContainer2):");
+        System.out.println(Arrays.toString(dataContainer2.getItems()));
+
+        DataContainer<String> dataContainer3 =
+                new DataContainer<>(new String[] {"10", "1", "kjk", null, null, "drw", null, "lol", null, "0"});
+
+        System.out.println("Массив элементов dataContainer3 после инициализации");
+        System.out.println(Arrays.toString(dataContainer3.getItems()));
+
+        dataContainer.sort(dataContainer3, comparator);
+        System.out.println("Вывод массиваа после сортировки(dataContainer3, comporator):");
+        System.out.println(Arrays.toString(dataContainer3.getItems()));
 
     }
 }

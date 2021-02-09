@@ -8,10 +8,11 @@
 */
 package home_work_4;
 
-import java.util.*;
-import java.util.function.Consumer;
+import home_work_3.calcs.additional.CalculatorWithMemory;
 
-public class DataContainer<T> implements Iterable<T>{
+import java.util.*;
+
+public class DataContainer<T> implements Comparable<String>{
 /*
 * 2. Внутри DataContainer должно быть поле T[] data,
 внутренний массив, которое предназначено для хранения передаваемых объектов.
@@ -82,8 +83,8 @@ public class DataContainer<T> implements Iterable<T>{
     }
 
     /*
-    * 6. В данном классе должен быть метод T[] getItems(). Данный метод возвращает поле data.
-    * */
+     * 6. В данном классе должен быть метод T[] getItems(). Данный метод возвращает поле data.
+     * */
 
     public T[] getItems(){
         return this.data;
@@ -127,18 +128,18 @@ public class DataContainer<T> implements Iterable<T>{
     public boolean delete(T item){
         for (int i= 0; i < this.data.length; i++) {
             if (this.data[i] == item){
-                    deletingFromData(i);
-                    return true;
-                }
+                deletingFromData(i);
+                return true;
             }
-            return false;
+        }
+        return false;
     }
 
     /*
-    * 9. Добавить НЕ СТАТИЧЕСКИЙ метод void sort(Comparator<.......> comparator).
-    * Данный метод занимается сортировкой данных записанных в поле data
-    * используя реализацию сравнения из ПЕРЕДАННОГО объекта comparator.
-    * */
+     * 9. Добавить НЕ СТАТИЧЕСКИЙ метод void sort(Comparator<.......> comparator).
+     * Данный метод занимается сортировкой данных записанных в поле data
+     * используя реализацию сравнения из ПЕРЕДАННОГО объекта comparator.
+     * */
 
     /*    public void sort(Comparator<T> comparator){
         Arrays.sort(this.data, comparator);
@@ -149,31 +150,22 @@ public class DataContainer<T> implements Iterable<T>{
         while (!isSorted) {
             isSorted = true;
             for (int i = 0; i < (this.data.length - 1); i++) {
-                if (this.data[i] == null && this.data[i + 1] == null) {
-                    continue;
-                } else if (this.data[i + 1] == null) {
-                    continue;
-                } else if (this.data[i] == null) {
-                    swap(i, i+1);
-                    isSorted = false;
-                } else if (comparator.compare(this.data[i], this.data[i + 1]) < 0) {
-                    continue;
-                } else if (comparator.compare(this.data[i], this.data[i + 1]) == 0) {
-                    continue;
-                } else {
-                    swap(i, i+1);
+                if (comparator.compare(this.data[i], this.data[i + 1]) > 0) {
+                    T temp = this.data[i];
+                    this.data[i] = this.data[i+1];
+                    this.data[i+1] = temp;
                     isSorted = false;
                 }
-                if (isSorted) {
-                    break;
-                }
+            }
+            if (isSorted) {
+                break;
             }
         }
     }
 
     /*
-    * 10. Переопределить метод toString() в классе и выводить содержимое data без ячеек в которых хранится null.
-    * */
+     * 10. Переопределить метод toString() в классе и выводить содержимое data без ячеек в которых хранится null.
+     * */
 
     public String toString(){
         if (this.data != null){
@@ -201,7 +193,21 @@ public class DataContainer<T> implements Iterable<T>{
     */
 
     public static void sort (DataContainer<String> container){
-        Arrays.sort(container.getItems());
+        boolean isSorted = false;
+        while (!isSorted) {
+            isSorted = true;
+            for (int i = 0; i < (container.data.length - 1); i++) {
+                if (container.data[i].compareTo(container.data[i + 1]) > 0) {
+                    String temp = container.data[i];
+                    container.data[i] = container.data[i+1];
+                    container.data[i+1] = temp;
+                    isSorted = false;
+                }
+            }
+            if (isSorted) {
+                break;
+            }
+        }
     }
 
     /*
@@ -213,27 +219,27 @@ public class DataContainer<T> implements Iterable<T>{
     */
 
     public static void sort (DataContainer<String> container, Comparator<String> comparator){
-        Arrays.sort(container.getItems(), comparator);
+        boolean isSorted = false;
+        while (!isSorted) {
+            isSorted = true;
+            for (int i = 0; i < (container.data.length - 1); i++) {
+                if (comparator.compare(container.data[i], container.data[i + 1]) > 0) {
+                    String temp = container.data[i];
+                    container.data[i] = container.data[i+1];
+                    container.data[i+1] = temp;
+                    isSorted = false;
+                }
+            }
+            if (isSorted) {
+                break;
+            }
+        }
     }
 
     /*
     13.** Реализовать в DataContainer интерфейс Iterable
     */
 
-    @Override
-    public Iterator<T> iterator() {
-        return null;
-    }
-
-    @Override
-    public void forEach(Consumer<? super T> action) {
-
-    }
-
-    @Override
-    public Spliterator<T> spliterator() {
-        return null;
-    }
 
     private void deletingFromData (int index){
         T[] temp1 = Arrays.copyOfRange(this.data, 0, index);
@@ -244,10 +250,8 @@ public class DataContainer<T> implements Iterable<T>{
         }
     }
 
-    public void swap (int i, int j) {
-        T temp = this.data[i];
-        this.data[i] = this.data[j];
-        this.data[j] = temp;
+    @Override
+    public int compareTo(String o) {
+        return this.toString().compareTo(o);
     }
-
 }

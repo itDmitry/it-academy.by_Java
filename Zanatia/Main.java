@@ -17,7 +17,8 @@
 * */
 package Zanatia;
 
-import Zanatia.Comporators.StudentNameComporator;
+import Zanatia.Comparators.StudentNameComparator;
+import Zanatia.Utils.SortUtils;
 import Zanatia.dto.Student;
 
 import java.util.*;
@@ -28,7 +29,7 @@ public class Main {
 
         Random random = new Random();
         for (int i = 0; i < 10000; i++) {
-            listOfStudents.add(new Student(i+1, randomNameGenerator(),
+            listOfStudents.add(new Student(i+1, "Привет",
                     (int) (7 + Math.random()*(17 - 7 + 1)), random.nextDouble()*10,
                     random.nextBoolean()));
         }
@@ -36,8 +37,8 @@ public class Main {
         ArrayList<Student> filteredStudents = new ArrayList<>();
         filteredStudents = filterByAgeAndRating(listOfStudents);
 
-        StudentNameComporator comporator = new StudentNameComporator();
-        sortWithComporatorBubble(filteredStudents, comporator);
+        StudentNameComparator comporator = new StudentNameComparator();
+        SortUtils.sortWithComporatorBubble(filteredStudents, comporator);
 
         for (int i = 0; i < 10; i++) {
             printStudent(filteredStudents.get(i));
@@ -56,75 +57,11 @@ public class Main {
         return filteredStudentsList;
     }
 
-    public static <T> void sortWithComporatorBubble(List<T> container, Comparator<T> comparator) {
-        int dlinacontainera = container.size();
-        boolean isSorted = false;
-        while (!isSorted) {
-            isSorted = true;
-            for (int i = 0; i < (dlinacontainera - 1); i++) {
-                T first = container.get(i);
-                T second = container.get(i+1);
-                int compare = comparator.compare(container.get(i), container.get(i+1));
-                if (compare > 0 ) {
-                   container.set(i, second);
-                   container.set(i+1, first);
-                   isSorted = false;
-                }
-                if (isSorted) {
-                    break;
-                }
-            }
-        }
-    }
-
-    public static <T> void sortWithComporatorShaker(List<T> container, Comparator<T> comparator) {
-        int dlinacontainera = container.size();
-        int leftBorder = 0;
-        int rightBorder = dlinacontainera - 1;
-        boolean isSorted;
-        while (leftBorder < rightBorder) {
-            isSorted = true;
-            for (int i = leftBorder; i < rightBorder; i++) {
-                T first = container.get(i);
-                T second = container.get(i+1);
-                int compare = comparator.compare(container.get(i), container.get(i+1));
-                if (compare > 0) {
-                    container.set(i, second);
-                    container.set(i+1, first);
-                    isSorted = false;
-                }
-            }
-            if (isSorted) {
-                break;
-            }
-            rightBorder--;
-            for (int i = rightBorder; i > leftBorder; i--) {
-                T first = container.get(i-1);
-                T second = container.get(i);
-                int compare = comparator.compare(container.get(i-1), container.get(i));
-                if (compare > 0) {
-                    container.set(i-1, second);
-                    container.set(i, first);
-                    isSorted = false;
-                }
-            }
-            leftBorder++;
-            if (isSorted) {
-                break;
-            }
-        }
-    }
 
 
+//    public static void flow (Predicate<Student> predicate, Comparator<Student> comparator)
 
-    public static String randomNameGenerator() {
-        StringBuilder builder = new StringBuilder();
-            int length = (int) (Math.random()*10);
-            for(int i = 0; i < length; i++) {
-                builder.append((char)(Math.random()*26 + 'a'));;
-            }
-        return builder.toString();
-        }
+
 
     public static void printStudent(Student student){
         System.out.println("№: " + student.getSerialNumber());
