@@ -15,12 +15,7 @@ public class FakeRandom implements iRandom {
 
     @Override
     public String randomString(int min, int max) {
-        StringBuilder builder = new StringBuilder();
-        int length = (int) (Math.random()*10);
-        for(int i = 0; i < length; i++) {
-            builder.append((char)(Math.random()*26 + 'a'));
-        }
-        return builder.toString();
+        return "Привет";
     }
 
     @Override

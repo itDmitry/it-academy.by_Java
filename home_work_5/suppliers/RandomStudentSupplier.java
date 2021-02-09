@@ -1,7 +1,7 @@
-package Zanatia.suppliers;
+package home_work_5.suppliers;
 
 import Zanatia.core.Random.api.iRandom;
-import Zanatia.dto.Student;
+import home_work_5.dto.Student;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Supplier;

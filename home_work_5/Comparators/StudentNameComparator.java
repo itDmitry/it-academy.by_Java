@@ -1,6 +1,6 @@
 package Zanatia.Comparators;
 
-import Zanatia.dto.Student;
+import home_work_5.dto.Student;
 
 import java.util.Comparator;
 

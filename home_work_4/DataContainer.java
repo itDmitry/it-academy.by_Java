@@ -11,6 +11,7 @@ package home_work_4;
 import home_work_3.calcs.additional.CalculatorWithMemory;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 public class DataContainer<T> implements Comparable<String>{
 /*
@@ -240,6 +241,21 @@ public class DataContainer<T> implements Comparable<String>{
     13.** Реализовать в DataContainer интерфейс Iterable
     */
 
+//    @Override
+//    public Iterator<String> iterator() {
+//        return null;
+//    }
+//
+//    @Override
+//    public void forEach(Consumer<? super String> action) {
+//
+//    }
+//
+//    @Override
+//    public Spliterator<String> spliterator() {
+//        return null;
+//    }
+
 
     private void deletingFromData (int index){
         T[] temp1 = Arrays.copyOfRange(this.data, 0, index);
@@ -254,4 +270,5 @@ public class DataContainer<T> implements Comparable<String>{
     public int compareTo(String o) {
         return this.toString().compareTo(o);
     }
+
 }

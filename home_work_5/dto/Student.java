@@ -5,7 +5,7 @@
 оценка(0.0-10.0),
 признак участия в олимпиадах (bool).
 */
-package Zanatia.dto;
+package home_work_5.dto;
 
 public class Student implements Comparable<Student> {
     private final int serialNumber;

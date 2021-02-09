@@ -15,53 +15,57 @@
 6. Отсортировать отфильтрованных студентов по возрасту и оценке одновременно.
 Вывести топ 10 в каждом возрасте.
 * */
-package Zanatia;
+package home_work_5;
 
 import Zanatia.Comparators.StudentNameComparator;
-import Zanatia.Utils.SortUtils;
-import Zanatia.dto.Student;
+import home_work_5.Utils.SortUtils;
+import Zanatia.core.Random.api.iRandom;
+import home_work_5.dto.Student;
+import home_work_5.predicate.StudentAgeAndScorePredicate;
+import home_work_5.suppliers.RandomStudentSupplier;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
         ArrayList<Student> listOfStudents = new ArrayList<>(10000);
 
-        Random random = new Random();
+        iRandom random = new Java7Random();
+        AtomicInteger counter = new AtomicInteger(0);
+        RandomStudentSupplier randomStudentSupplier = new RandomStudentSupplier(random, counter);
         for (int i = 0; i < 10000; i++) {
-            listOfStudents.add(new Student(i+1, "Привет",
-                    (int) (7 + Math.random()*(17 - 7 + 1)), random.nextDouble()*10,
-                    random.nextBoolean()));
+            listOfStudents.add(randomStudentSupplier.get());
         }
 
-        ArrayList<Student> filteredStudents = new ArrayList<>();
-        filteredStudents = filterByAgeAndRating(listOfStudents);
+        StudentAgeAndScorePredicate studentAgeAndScorePredicate =
+                new StudentAgeAndScorePredicate(12,8);
+        ArrayList<Student> filteredStudents =
+                filterByAgeAndRating(listOfStudents, studentAgeAndScorePredicate);
 
-        StudentNameComparator comporator = new StudentNameComparator();
-        SortUtils.sortWithComporatorBubble(filteredStudents, comporator);
+        StudentNameComparator comparator = new StudentNameComparator();
+        SortUtils.sortWithComporatorBubble(filteredStudents, comparator);
+
+        Iterator<Student> iteratorStudentov = filteredStudents.iterator();
 
         for (int i = 0; i < 10; i++) {
-            printStudent(filteredStudents.get(i));
+            printStudent(iteratorStudentov.next());
         }
     }
 
-    public static ArrayList<Student> filterByAgeAndRating (ArrayList<Student> arrayList){
+    public static ArrayList<Student> filterByAgeAndRating (ArrayList<Student> arrayList,
+                                                           Predicate<Student> predicate){
 
         ArrayList<Student> filteredStudentsList = new ArrayList<>();
 
         for (Student student : arrayList) {
-            if (student.getAge() >= 12 && student.getRating() >= 8) {
+            if (predicate.test(student)) {
                 filteredStudentsList.add(student);
             }
         }
         return filteredStudentsList;
     }
-
-
-
-//    public static void flow (Predicate<Student> predicate, Comparator<Student> comparator)
-
-
 
     public static void printStudent(Student student){
         System.out.println("№: " + student.getSerialNumber());
