@@ -1,5 +1,7 @@
 package Zanatia.core.Random.api;
 
+import java.io.IOException;
+
 public interface iRandom {
     /**
      * Возвращает ранодом int в заданом промежутке

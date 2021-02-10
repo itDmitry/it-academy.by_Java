@@ -2,6 +2,7 @@ package home_work_5;
 
 import Zanatia.core.Random.api.iRandom;
 
+import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
 
 //https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java
@@ -18,7 +19,7 @@ public class Java8Random implements iRandom {
     }
 
     @Override
-    public String randomString(int min, int max) {
+    public String randomString(int min, int max) throws IOException {
         StringBuilder builder = new StringBuilder();
         int length = ThreadLocalRandom.current().nextInt(min, max + 1);
 

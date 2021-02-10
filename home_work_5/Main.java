@@ -32,7 +32,7 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Student> listOfStudents = new ArrayList<>(10000);
 
-        iRandom random = new Java7Random();
+        iRandom random = new Java8RandomNamesFromFile();
         AtomicInteger counter = new AtomicInteger(0);
         RandomStudentSupplier randomStudentSupplier = new RandomStudentSupplier(random, counter);
         for (int i = 0; i < 10000; i++) {
