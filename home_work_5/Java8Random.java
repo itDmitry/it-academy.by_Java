@@ -19,7 +19,7 @@ public class Java8Random implements iRandom {
     }
 
     @Override
-    public String randomString(int min, int max) throws IOException {
+    public String randomString(int min, int max) {
         StringBuilder builder = new StringBuilder();
         int length = ThreadLocalRandom.current().nextInt(min, max + 1);
 
